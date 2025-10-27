@@ -2,9 +2,8 @@ name: Daily DevSync Update [21f3003056@ds.study.iitm.ac.in]
 
 on:
   schedule:
-    # Runs every day at 07:05 IST (which is 01:35 UTC). Adjust as needed.
     - cron: '35 1 * * *'
-  workflow_dispatch:  # Allows manual trigger
+  workflow_dispatch:
 
 jobs:
   daily-commit:
