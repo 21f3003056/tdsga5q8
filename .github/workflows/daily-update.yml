@@ -13,11 +13,18 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up git for pushing
+        run: |
+          git config user.name "DevSyncBot"
+          git config user.email "21f3003056@ds.study.iitm.ac.in"
+
+      - name: Pull latest changes
+        run: |
+          git pull origin main --rebase
+
       - name: Daily Commit by 21f3003056@ds.study.iitm.ac.in
         run: |
           echo "Daily update: $(date)" >> daily-status.log
-          git config user.name "DevSyncBot"
-          git config user.email "21f3003056@ds.study.iitm.ac.in"
           git add daily-status.log
           git commit -m "Daily automated commit: $(date)" || echo "No changes to commit"
 
@@ -25,3 +32,4 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.myrepoleveltoken }}
+
